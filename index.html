@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кулинар и фуд-блогер</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    h2 {
+      font-size: 1.5rem;   
+      line-height: 1.3;
+      letter-spacing: 0.5px;
+    }
+  </style>
+
+</head>
+
+<script src="dom.js"></script>
+<script src="script.js"></script>
+
+<body>
+<header>
+    <h1>Буфалов Никита</h1>
+    <p>Кулинар, фуд-блогер</p>
+  </header>
+
+<nav class="main-nav" aria-label="Основная навигация">
+  <ul class="nav-list">
+    <li><a href="#skills">Навыки</a></li>
+    <li><a href="#projects">Проекты</a></li>
+    <li><a href="#signature">Фирменные блюда</a></li>
+    <li><a href="#ingredients">Ингредиенты недели</a></li>
+    <li><a href="#contact">Обратная связь</a></li>
+  </ul>
+</nav>
+
+<div class="controls">
+  <button id="theme-toggle" type="button">Тёмная тема</button>
+  <button id="toggle-recipes" type="button">Скрыть рецепты</button>
+  <button id="add-recipe" type="button">Добавить рецепт</button>
+  <button id="remove-last-recipe" type="button">Удалить последний</button>
+</div>
+
+<div class="layout">
+  <main>
+
+    <img
+      src="./images/nikitabufalov.jpg"
+      alt="Портрет Никиты Буфалова"
+      width="200"
+      height="200"
+      style="object-fit: cover;"
+    >
+
+    <section id="skills">
+      <h2>Навыки</h2>
+      <ul>
+        <li>Знание кухонь мира</li>
+        <li>Умение фотографировать еду при естественном свете</li>
+        <li>Основы фуд-стилистики</li>
+        <li>Разработка авторских рецептов</li>
+        <li>Ведение блога и написание текстов о еде</li>
+        <li>Работа с соусами, специями</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Проекты</h2>
+      <ol>
+        <li>Домашняя паста с томатами и базиликом</li>
+        <li>Тонкий тирамису без выпечки</li>
+        <li>Грузинские хачапури по-аджарски</li>
+        <li>Тыквенный крем-суп с имбирём</li>
+      </ol>
+    </section>
+
+    <section id="signature">
+      <h2>Фирменные блюда</h2>
+      <div class="flex-cards">
+
+        <article class="dish-card">
+          <h3>Домашняя паста с томатами</h3>
+          <img
+            src="./images/pasta_s_tomatomi.jpg"
+            alt="Домашняя паста с томатами и базиликом"
+            width="400"
+            height="260"
+          >
+          <dl class="dish-meta">
+            <dt>Время</dt>
+            <dd>35 мин</dd>
+            <dt>Ккал</dt>
+            <dd>420</dd>
+          </dl>
+        </article>
+
+        <article class="dish-card">
+          <h3>Тонкий тирамису</h3>
+          <img
+            src="./images/tiramisu.jpg"
+            alt="Тирамису без выпечки"
+            width="400"
+            height="260"
+          >
+          <dl class="dish-meta">
+            <dt>Время</dt>
+            <dd>25 мин</dd>
+            <dt>Ккал</dt>
+            <dd>380</dd>
+          </dl>
+        </article>
+
+        <article class="dish-card">
+          <h3>Хачапури по-аджарски</h3>
+          <img
+            src="./images/khachapuri.jpg"
+            alt="Грузинские хачапури по-аджарски"
+            width="400"
+            height="260"
+          >
+          <dl class="dish-meta">
+            <dt>Время</dt>
+            <dd>50 мин</dd>
+            <dt>Ккал</dt>
+            <dd>610</dd>
+          </dl>
+        </article>
+
+        <article class="dish-card">
+          <h3>Тыквенный крем-суп</h3>
+          <img
+            src="./images/pumpkin-soup.jpg"
+            alt="Тыквенный крем-суп с имбирём"
+            width="400"
+            height="260"
+          >
+          <dl class="dish-meta">
+            <dt>Время</dt>
+            <dd>40 мин</dd>
+            <dt>Ккал</dt>
+            <dd>290</dd>
+          </dl>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="ingredients">
+      <h2>Ингредиенты недели</h2>
+      <div class="grid-ingredients">
+
+        <article class="ingredient-card">
+          <img
+            src="./images/basil.jpg"
+            alt="Базилик"
+            width="300"
+            height="200"
+          >
+          <h3>Базилик</h3>
+          <p>Богат антиоксидантами, поддерживает пищеварение и придаёт блюдам свежий аромат.</p>
+        </article>
+
+        <article class="ingredient-card">
+          <img
+            src="./images/tomato.jpg"
+            alt="Томаты"
+            width="300"
+            height="200"
+          >
+          <h3>Томаты</h3>
+          <p>Источник ликопина и витамина C, полезны для сердца и кожи.</p>
+        </article>
+
+        <article class="ingredient-card">
+          <img
+            src="./images/olive-oil.jpg"
+            alt="Оливковое масло"
+            width="300"
+            height="200"
+          >
+          <h3>Оливковое масло</h3>
+          <p>Содержит полезные жиры, снижает риск сердечно-сосудистых заболеваний.</p>
+        </article>
+
+        <article class="ingredient-card">
+          <img
+            src="./images/garlic.jpg"
+            alt="Чеснок"
+            width="300"
+            height="200"
+          >
+          <h3>Чеснок</h3>
+          <p>Природный антисептик, укрепляет иммунитет и улучшает вкус блюд.</p>
+        </article>
+
+        <article class="ingredient-card">
+          <img
+            src="./images/ginger.jpg"
+            alt="Имбирь"
+            width="300"
+            height="200"
+          >
+          <h3>Имбирь</h3>
+          <p>Помогает при простуде, улучшает кровообращение и добавляет блюдам остроту.</p>
+        </article>
+
+        <article class="ingredient-card">
+          <img
+            src="./images/parmesan.jpg"
+            alt="Сыр пармезан"
+            width="300"
+            height="200"
+          >
+          <h3>Пармезан</h3>
+          <p>Богат кальцием и белком, придаёт пасте и салатам насыщенный вкус.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <form action="#" method="post">
+        <h2>Обратная связь</h2>
+
+        <label for="name">Имя</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Ваше имя"
+          required
+        >
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        >
+
+        <label for="message">Сообщение</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Напишите ваш вопрос или отзыв"
+        ></textarea>
+
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <aside>
+    <h2>Кулинарные предпочтения</h2>
+    <p><strong>Любимая кухня:</strong> итальянская</p>
+    <p><strong>Любимый ингредиент:</strong> базилик</p>
+  </aside>
+
+</div>
+  
+  <footer>
+    <p>&copy; 2026 Буфалов Никита. Все права защищены.</p>
+  </footer>
+
+</body>
+</html>
