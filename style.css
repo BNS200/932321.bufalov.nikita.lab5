@@ -438,3 +438,78 @@ html, body {
 * {
   box-sizing: border-box;
 }
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  justify-content: center;
+}
+
+.controls button {
+  background-color: var(--color-terracotta);
+  color: var(--color-white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  background-color: var(--color-text);
+}
+
+.recipe-card ul {
+  padding-left: 18px;
+  margin: 8px 0;
+  flex: 1;
+}
+
+.recipe-card .delete-recipe {
+  margin-top: 10px;
+  align-self: flex-start;
+  background-color: var(--color-text);
+  color: var(--color-cream);
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.recipe-card .delete-recipe:hover {
+  background-color: var(--color-terracotta);
+}
+
+.is-hidden {
+  display: none;
+}
+
+body.theme-dark {
+  --color-cream: #2b2119;
+  --color-text: #f0dcc4;
+  --color-white: #1a1410;
+  --color-terracotta: #d9855f;
+}
+
+body.theme-dark .layout aside {
+  background-color: #3a2c21;
+}
+
+body.theme-dark .dish-card,
+body.theme-dark .ingredient-card,
+body.theme-dark #projects li,
+body.theme-dark form,
+body.theme-dark .dish-meta {
+  background-color: #3a2c21;
+}
+
+body.theme-dark input,
+body.theme-dark textarea {
+  background-color: #2b2119;
+  color: var(--color-cream);
+  border-color: #d9855f;
+}

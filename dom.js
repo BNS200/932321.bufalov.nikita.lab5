@@ -79,6 +79,7 @@
     applyTheme(next);
     saveTheme(next);
   });
+
   function createRecipeCard(recipe, index) {
     var card = document.createElement('article');
     card.className = 'dish-card recipe-card';
@@ -95,6 +96,24 @@
       list.appendChild(li);
     });
 
+    var meta = document.createElement('dl');
+    meta.className = 'dish-meta';
+
+    var dtTime = document.createElement('dt');
+    dtTime.textContent = 'Время';
+    var ddTime = document.createElement('dd');
+    ddTime.textContent = (recipe.time || 0) + ' мин';
+
+    var dtKcal = document.createElement('dt');
+    dtKcal.textContent = 'Ккал';
+    var ddKcal = document.createElement('dd');
+    ddKcal.textContent = recipe.kcal || 0;
+
+    meta.appendChild(dtTime);
+    meta.appendChild(ddTime);
+    meta.appendChild(dtKcal);
+    meta.appendChild(ddKcal);
+
     var delBtn = document.createElement('button');
     delBtn.type = 'button';
     delBtn.className = 'delete-recipe';
@@ -106,6 +125,7 @@
 
     card.appendChild(title);
     card.appendChild(list);
+    card.appendChild(meta);
     card.appendChild(delBtn);
     return card;
   }
@@ -118,9 +138,15 @@
       var items = card.querySelectorAll('li');
       var ingredients = [];
       items.forEach(function (li) { ingredients.push(li.textContent); });
+
+      var ddTime = card.querySelector('.dish-meta dd:nth-of-type(1)');
+      var ddKcal = card.querySelector('.dish-meta dd:nth-of-type(2)');
+
       result.push({
         title: titleEl ? titleEl.textContent : 'Без названия',
-        ingredients: ingredients
+        ingredients: ingredients,
+        time: ddTime ? parseInt(ddTime.textContent, 10) : 0,
+        kcal: ddKcal ? parseInt(ddKcal.textContent, 10) : 0
       });
     });
     saveRecipes(result);
@@ -135,7 +161,7 @@
 
   applyTheme(loadTheme());
   renderAll(loadRecipes());
-  
+
   addRecipeBtn.addEventListener('click', function () {
     var title = prompt('Название рецепта:', 'Новый рецепт');
     if (title === null) return;
@@ -157,7 +183,28 @@
       return;
     }
 
-    var card = createRecipeCard({ title: title, ingredients: ingredients });
+    var timeRaw = prompt('Время приготовления (мин):', '30');
+    if (timeRaw === null) return;
+    var time = parseInt(timeRaw, 10);
+    if (isNaN(time) || time <= 0) {
+      alert('Время должно быть положительным числом.');
+      return;
+    }
+
+    var kcalRaw = prompt('Калорийность (ккал):', '400');
+    if (kcalRaw === null) return;
+    var kcal = parseInt(kcalRaw, 10);
+    if (isNaN(kcal) || kcal <= 0) {
+      alert('Калорийность должна быть положительным числом.');
+      return;
+    }
+
+    var card = createRecipeCard({
+      title: title,
+      ingredients: ingredients,
+      time: time,
+      kcal: kcal
+    });
     recipesContainer.appendChild(card);
     syncRecipesFromDOM();
   });
@@ -173,7 +220,7 @@
   });
 
   toggleRecipesBtn.addEventListener('click', function () {
-    var hidden = recipesContainer.classList.toggle('is-hidden');
+    var hidden = signatureSection.classList.toggle('is-hidden');
     toggleRecipesBtn.textContent = hidden ? 'Показать рецепты' : 'Скрыть рецепты';
   });
 
