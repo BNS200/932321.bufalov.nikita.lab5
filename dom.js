@@ -79,4 +79,102 @@
     applyTheme(next);
     saveTheme(next);
   });
+  function createRecipeCard(recipe, index) {
+    var card = document.createElement('article');
+    card.className = 'dish-card recipe-card';
+    card.dataset.index = index;
+
+    var title = document.createElement('h3');
+    title.textContent = recipe.title;
+
+    var list = document.createElement('ul');
+    list.className = 'recipe-ingredients';
+    recipe.ingredients.forEach(function (item) {
+      var li = document.createElement('li');
+      li.textContent = item;
+      list.appendChild(li);
+    });
+
+    var delBtn = document.createElement('button');
+    delBtn.type = 'button';
+    delBtn.className = 'delete-recipe';
+    delBtn.textContent = 'Удалить';
+    delBtn.addEventListener('click', function () {
+      card.remove();
+      syncRecipesFromDOM();
+    });
+
+    card.appendChild(title);
+    card.appendChild(list);
+    card.appendChild(delBtn);
+    return card;
+  }
+
+  function syncRecipesFromDOM() {
+    var cards = recipesContainer.querySelectorAll('.recipe-card');
+    var result = [];
+    cards.forEach(function (card) {
+      var titleEl = card.querySelector('h3');
+      var items = card.querySelectorAll('li');
+      var ingredients = [];
+      items.forEach(function (li) { ingredients.push(li.textContent); });
+      result.push({
+        title: titleEl ? titleEl.textContent : 'Без названия',
+        ingredients: ingredients
+      });
+    });
+    saveRecipes(result);
+  }
+
+  function renderAll(recipes) {
+    recipesContainer.innerHTML = '';
+    recipes.forEach(function (r, i) {
+      recipesContainer.appendChild(createRecipeCard(r, i));
+    });
+  }
+
+  applyTheme(loadTheme());
+  renderAll(loadRecipes());
+  
+  addRecipeBtn.addEventListener('click', function () {
+    var title = prompt('Название рецепта:', 'Новый рецепт');
+    if (title === null) return;
+    title = title.trim();
+    if (!title) {
+      alert('Название не может быть пустым.');
+      return;
+    }
+
+    var ingredientsRaw = prompt('Ингредиенты через запятую:', 'соль, перец');
+    if (ingredientsRaw === null) return;
+    var ingredients = ingredientsRaw
+      .split(',')
+      .map(function (s) { return s.trim(); })
+      .filter(function (s) { return s.length > 0; });
+
+    if (ingredients.length === 0) {
+      alert('Нужно указать хотя бы один ингредиент.');
+      return;
+    }
+
+    var card = createRecipeCard({ title: title, ingredients: ingredients });
+    recipesContainer.appendChild(card);
+    syncRecipesFromDOM();
+  });
+
+  removeLastBtn.addEventListener('click', function () {
+    var cards = recipesContainer.querySelectorAll('.recipe-card');
+    if (cards.length === 0) {
+      console.warn('Нет рецептов для удаления.');
+      return;
+    }
+    cards[cards.length - 1].remove();
+    syncRecipesFromDOM();
+  });
+
+  toggleRecipesBtn.addEventListener('click', function () {
+    var hidden = recipesContainer.classList.toggle('is-hidden');
+    toggleRecipesBtn.textContent = hidden ? 'Показать рецепты' : 'Скрыть рецепты';
+  });
+
 })();
